@@ -7,7 +7,7 @@ COPY ${JAR_FILE} app.jar
 
 # Optionally, add a volume for temporary files (if needed)
 VOLUME /tmp
-
+EXPOSE 9090
 # Set the entry point to run the JAR file
 ENTRYPOINT ["java","-jar","app.jar"]
 
