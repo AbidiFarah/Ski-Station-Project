@@ -1,5 +1,13 @@
-FROM eclipse-temurin:17-jdk-alpine
-VOLUME /tmp
-ARG JAR_FILE
+# Use a base image with the JDK
+FROM openjdk:11-jdk-slim
+
+# Copy the JAR file into the container
+ARG JAR_FILE=target/*.jar
 COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+
+# Optionally, add a volume for temporary files (if needed)
+VOLUME /tmp
+
+# Set the entry point to run the JAR file
+ENTRYPOINT ["java","-jar","app.jar"]
+
