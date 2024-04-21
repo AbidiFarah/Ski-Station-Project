@@ -150,6 +150,7 @@ class SkierServicesTest {
         assertEquals(piste, assignedSkier.getPistes().iterator().next());
     }
 
+
     @Test
     void retrieveSkiersBySubscriptionType() {
         // Mocking repository behavior
