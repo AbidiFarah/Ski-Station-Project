@@ -54,23 +54,6 @@ class SkierServicesTest {
     void setUp() {
         MockitoAnnotations.initMocks(this);
     }
-
-    @Test
-    void addSkierAndAssignToCourse() {
-        // Mocking repository behavior
-        Skier skier = new Skier("John", "Doe", LocalDate.of(1990, 5, 15), "City", null, new HashSet<>(), new HashSet<>());
-        Course course = new Course(1, TypeCourse.COLLECTIVE_ADULT, Support.SKI, 50.0f, 1, null);
-        when(skierRepository.save(skier)).thenReturn(skier);
-        when(courseRepository.findById(1L)).thenReturn(Optional.of(course));
-
-        // Calling the method under test
-        Skier savedSkier = skierServices.addSkierAndAssignToCourse(skier, 1L);
-
-        // Verifying the result
-        assertEquals(skier, savedSkier);
-        verify(registrationRepository, times(1)).save(any(Registration.class));
-    }
-
     @Test
     void removeSkier() {
         // Calling the method under test
@@ -116,6 +99,22 @@ class SkierServicesTest {
 
         // Verifying the result
         assertEquals(skierToAdd, addedSkier);
+    }
+
+    @Test
+    void addSkierAndAssignToCourse() {
+        // Mocking repository behavior
+        Skier skier = new Skier("John", "Doe", LocalDate.of(1990, 5, 15), "City", null, new HashSet<>(), new HashSet<>());
+        Course course = new Course(1, TypeCourse.COLLECTIVE_ADULT, Support.SKI, 50.0f, 1, null);
+        when(skierRepository.save(skier)).thenReturn(skier);
+        when(courseRepository.findById(1L)).thenReturn(Optional.of(course));
+
+        // Calling the method under test
+        Skier savedSkier = skierServices.addSkierAndAssignToCourse(skier, 1L);
+
+        // Verifying the result
+        assertEquals(skier, savedSkier);
+        verify(registrationRepository, times(1)).save(any(Registration.class));
     }
 
     @Test
