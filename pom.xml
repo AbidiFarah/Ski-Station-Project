@@ -121,7 +121,7 @@
          </activation>
       </profile>
       <profile>
-         <id>prod</id>
+         <id>preprod</id>
          <properties>
             <env>src/main/resources/preprod</env>
             <maven.test.skip>true</maven.test.skip>
